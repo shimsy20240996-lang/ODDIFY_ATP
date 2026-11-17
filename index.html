@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- SEO: title, description, favicon, social preview image -->
+  <title>Oddify | Got skills? Get paid. Got tasks? Get them done.</title>
+  <meta name="description" content="Oddify connects people in Sri Lanka who have skills with people who have tasks. AI help in Sinhala, Tamil and English, GPS tracking, nearby jobs and verified employers. Coming soon.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="icon" href="images/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <meta property="og:title" content="Oddify | Your skills meet opportunities">
+  <meta property="og:description" content="Got skills? Get paid. Got tasks? Get them done. Sri Lanka only, coming soon.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://oddify.com.lk/">
+  <meta property="og:image" content="https://oddify.com.lk/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="logo" href="#top" aria-label="Oddify home">
+    <img src="images/oddify-mark.png" width="40" height="40" alt="Oddify logo" decoding="async"> <span>ODDIFY</span>
+  </a>
+  <button class="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation menu">
+    <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    <span>Menu</span>
+  </button>
+  <nav id="nav" aria-label="Main">
+    <a href="#problem">The problem</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#team">Team</a>
+    <a class="btn btn-small" href="#join">Join the waitlist</a>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- HERO: tag, value proposition -->
+  <section class="hero" id="top">
+    <div class="hero-spotlight" aria-hidden="true"></div>
+    <canvas id="hero-particles" class="hero-particles" aria-hidden="true"></canvas>
+    <div class="hero-text">
+      <p class="tag"><span class="dot"></span> Sri Lanka only &ndash; coming soon</p>
+      <h1 >Got skills? Get paid.<br><span>Got tasks? Get them done.</span></h1>
+      <p class="brandline">ODDIFY &ndash; Your skills meet opportunities.</p>
+      <p class="lead">Whether you're looking to earn extra money or need an extra pair of hands, Oddify connects you with the right people to get things done.</p>
+      <div class="actions">
+        <a class="btn" href="#join">Join the waitlist</a>
+        <a class="btn btn-ghost" href="#features">Explore features</a>
+      </div>
+    </div>
+    <div class="stage" data-tilt>
+      <div class="glow"></div>
+      <div class="orb o1"></div><div class="orb o2"></div>
+      <div class="geo-shape geo-ring-1" aria-hidden="true"></div>
+      <div class="geo-shape geo-poly-1" aria-hidden="true"></div>
+      <!-- Gently floating job notification cards -->
+      <div class="hero-float-card fc-1" aria-hidden="true">
+        <span class="fc-badge">&#9881;</span>
+        <div class="fc-text"><strong>Plumbing repair</strong><small>Nugegoda &middot; Just now</small></div>
+      </div>
+      <div class="hero-float-card fc-2" aria-hidden="true">
+        <span class="fc-badge">&#9733;</span>
+        <div class="fc-text"><strong>Quote accepted</strong><small>LKR 3,500 &middot; Confirmed</small></div>
+      </div>
+      <div class="phone p-back" role="img" aria-label="Oddify map tracking a worker on the way to a job">
+        <div class="screen"><h3>Track your worker</h3>
+          <svg viewBox="0 0 220 180" class="map" aria-hidden="true"><rect width="220" height="180" fill="#E6F0EC"/><path d="M0 60H220M0 120H220M60 0V180M150 0V180" stroke="#fff" stroke-width="10"/><path d="M30 150 L60 120 L60 60 L150 60" fill="none" stroke="#0B6E69" stroke-width="4" stroke-dasharray="6 6"/><circle cx="30" cy="150" r="7" fill="#064E4A"/><circle cx="150" cy="60" r="9" fill="#F4B223"/></svg>
+          <div class="row"><span>Status</span><strong>On the way</strong></div>
+        </div>
+      </div>
+      <div class="phone p-front" role="img" aria-label="Oddify list of jobs available near Colombo with prices in LKR">
+        <div class="screen"><h3>Jobs near you</h3>
+          <p class="chip">Available near Colombo</p>
+          <div class="offer"><span>Fix a leaking tap<small>Nugegoda &middot; 2 hours</small></span><strong>LKR 3,500</strong></div>
+          <div class="offer"><span>Help move furniture<small>Dehiwala &middot; 3 hours</small></span><strong>LKR 4,000</strong></div>
+          <div class="offer"><span>Event setup<small>Colombo 07 &middot; Weekend</small></span><strong>LKR 5,000</strong></div>
+          <div class="mock-btn" aria-hidden="true">Send a quote</div>
+        </div>
+      </div>
+      <p class="glass g1">&#10003; Proposed verification</p>
+      <p class="glass g2">&#9906; GPS tracking prototype</p>
+    </div>
+  </section>
+
+  <div class="strip" aria-label="Jobs on Oddify"><div class="track">
+    <span>Plumbing</span><span>Cleaning</span><span>Delivery</span><span>Electrical work</span><span>Moving help</span><span>Gardening</span><span>Event help</span>
+  </div></div>
+
+  <!-- PROBLEM + HOW ODDIFY SOLVES IT -->
+  <section class="wrap reveal" id="problem">
+    <h2 >The problem</h2>
+    <p class="statement">In Sri Lanka, people with skills and spare time struggle to find trusted paid work, while people with everyday tasks struggle to find reliable, verified help, because there is no single trusted place that connects them.</p>
+    <div class="two">
+      <article class="card"><h3>If you have skills</h3><p>Students, part-time earners and skilled workers rely on word of mouth. They cannot easily show what they can do, find work near them or know who they are working for.</p></article>
+      <article class="card"><h3>If you have a task</h3><p>Finding someone for a repair, cleaning or delivery job means asking around, unclear prices and not knowing who will turn up.</p></article>
+    </div>
+
+    <h2 class="solve">How Oddify solves it</h2>
+    <ul class="solve-list">
+      <li ><strong>One trusted place.</strong> Post a task or offer your skills in Sinhala, Tamil or English.</li>
+      <li ><strong>The right match, close by.</strong> Jobs and helpers are matched by location and skill.</li>
+      <li ><strong>Confidence on both sides.</strong> Verified employers (proposed capability) and GPS tracking prototype are designed to show who is involved and where they are.</li>
+    </ul>
+  </section>
+
+  <!-- HOW ODDIFY WORKS (Interactive Customer & Worker Journey) -->
+  <section class="wrap reveal" id="how-it-works">
+    <h2>How Oddify works</h2>
+    <p class="sub">A simple, transparent journey connecting everyday tasks with trusted skills across Sri Lanka (Figma prototype workflow demonstration).</p>
+
+    <!-- Customer / Worker Journey Switcher -->
+    <div class="journey-switch" role="tablist" aria-label="Experience journey selection">
+      <button type="button" class="journey-tab active" id="tab-customer" role="tab" aria-selected="true" aria-controls="journey-customer">
+        <span class="tab-icon">&#128100;</span> Customer journey
+      </button>
+      <button type="button" class="journey-tab" id="tab-worker" role="tab" aria-selected="false" aria-controls="journey-worker">
+        <span class="tab-icon">&#128295;</span> Worker journey
+      </button>
+    </div>
+
+    <!-- Timeline Wrapper -->
+    <div class="timeline-container">
+      <div class="timeline-track" aria-hidden="true">
+        <div class="timeline-progress" id="timeline-progress"></div>
+      </div>
+
+      <!-- Tab 1: Customer Experience -->
+      <div class="journey-panel active" id="journey-customer" role="tabpanel" aria-labelledby="tab-customer">
+        <div class="timeline-grid">
+          <!-- Step 1 -->
+          <div class="timeline-step" data-step="1">
+            <div class="step-badge-wrapper">
+              <span class="step-num">01</span>
+              <span class="step-icon" aria-hidden="true">&#128221;</span>
+            </div>
+            <div class="step-body">
+              <h3>Post a job</h3>
+              <p>Customers describe the service they need in Sinhala, Tamil or English and provide relevant task details, location, and photos.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-step" data-step="2">
+            <div class="step-badge-wrapper">
+              <span class="step-num">02</span>
+              <span class="step-icon" aria-hidden="true">&#128269;</span>
+            </div>
+            <div class="step-body">
+              <h3>Discover workers</h3>
+              <p>Suitable, proposed verified workers near your area discover the request and review job specifications that fit their skills and schedule.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-step" data-step="3">
+            <div class="step-badge-wrapper">
+              <span class="step-num">03</span>
+              <span class="step-icon" aria-hidden="true">&#128172;</span>
+            </div>
+            <div class="step-body">
+              <h3>Receive quotations</h3>
+              <p>Customers receive transparent price proposals with estimated completion times and worker notes directly through the platform.</p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-step" data-step="4">
+            <div class="step-badge-wrapper">
+              <span class="step-num">04</span>
+              <span class="step-icon" aria-hidden="true">&#9989;</span>
+            </div>
+            <div class="step-body">
+              <h3>Choose a worker</h3>
+              <p>Compare ratings, price quotes, and proposed background verification before confirming your booking with planned arrival-code protection.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Worker Experience -->
+      <div class="journey-panel" id="journey-worker" role="tabpanel" aria-labelledby="tab-worker" style="display: none;">
+        <div class="timeline-grid">
+          <!-- Step 1 -->
+          <div class="timeline-step" data-step="1">
+            <div class="step-badge-wrapper">
+              <span class="step-num">01</span>
+              <span class="step-icon" aria-hidden="true">&#129505;</span>
+            </div>
+            <div class="step-body">
+              <h3>Create a profile</h3>
+              <p>Build a trusted profile showcasing your trade skills, service categories, working locations, and proposed verified identity.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-step" data-step="2">
+            <div class="step-badge-wrapper">
+              <span class="step-num">02</span>
+              <span class="step-icon" aria-hidden="true">&#128205;</span>
+            </div>
+            <div class="step-body">
+              <h3>Discover opportunities</h3>
+              <p>Browse nearby task listings across Colombo, Nugegoda, Gampaha and other cities filtered to your skills and available hours.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-step" data-step="3">
+            <div class="step-badge-wrapper">
+              <span class="step-num">03</span>
+              <span class="step-icon" aria-hidden="true">&#128176;</span>
+            </div>
+            <div class="step-body">
+              <h3>Submit quotations</h3>
+              <p>Propose competitive, transparent price estimates in LKR with custom availability notes tailored to the customer's request.</p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-step" data-step="4">
+            <div class="step-badge-wrapper">
+              <span class="step-num">04</span>
+              <span class="step-icon" aria-hidden="true">&#128640;</span>
+            </div>
+            <div class="step-body">
+              <h3>Manage accepted jobs</h3>
+              <p>Coordinate arrival with planned arrival-code verification, complete the task safely, and build your platform reputation and earnings.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="timeline-disclaimer">Workflow concept designed in our IIT SDGP Figma prototype (Demonstration of proposed user journey).</p>
+  </section>
+
+  <!-- KEY FEATURES (from the Figma prototype) -->
+  <section class="mint" id="features">
+    <div class="wrap">
+      <h2 >Key features</h2>
+      <p class="sub">Four features, all designed in our Figma prototype.</p>
+
+      <div class="feature reveal">
+        <div class="fstage"><div class="phone" role="region" aria-label="Oddify AI assistant chat demo with English, Sinhala and Tamil language options">
+          <div class="screen"><h3>AI Job Assistant</h3>
+            <div class="langs" role="tablist" aria-label="Select chat language">
+              <button type="button" class="lang-btn active" data-lang="en" role="tab" aria-selected="true">English</button>
+              <button type="button" class="lang-btn" data-lang="si" role="tab" aria-selected="false">සිංහල</button>
+              <button type="button" class="lang-btn" data-lang="ta" role="tab" aria-selected="false">தமிழ்</button>
+            </div>
+            <div class="chat-box" id="ai-chat-box" aria-live="polite">
+              <p class="bubble ai">Tell me what you need help with.</p>
+              <p class="bubble">My kitchen tap keeps leaking.</p>
+              <p class="bubble ai">I can help you find a plumber near your location.</p>
+              <div class="bubble ai typing" id="ai-chat-typing" style="display: none;" aria-label="Assistant is typing"><i></i><i></i><i></i></div>
+            </div>
+            <div class="chat-suggestions" id="ai-chat-suggestions" aria-label="Suggested questions">
+              <button type="button" class="sugg-btn">Find a plumber</button>
+              <button type="button" class="sugg-btn">I need an electrician</button>
+              <button type="button" class="sugg-btn">Find nearby jobs</button>
+            </div>
+          </div>
+        </div></div>
+        <div class="ftext"><h3>AI chatbot in Sinhala, Tamil and English</h3>
+          <p>Describe your task or skills in everyday words, by typing or speaking. The AI assistant asks follow-up questions and drafts the job for you to review and approve.</p>
+          <p>The whole app is designed for all three languages, so everyone in Sri Lanka can use it comfortably. Try the interactive demonstration on the left.</p></div>
+      </div>
+
+      <div class="feature rev reveal">
+        <div class="fstage"><div class="phone" role="img" aria-label="Oddify map showing a worker's route to the job location with a pulsing pin">
+          <div class="screen"><h3>Track your worker</h3>
+            <svg viewBox="0 0 220 180" class="map" aria-hidden="true"><rect width="220" height="180" fill="#E6F0EC"/><path d="M0 60H220M0 120H220M60 0V180M150 0V180" stroke="#fff" stroke-width="10"/><path class="route" d="M30 150 L60 120 L60 60 L150 60" fill="none" stroke="#0B6E69" stroke-width="4" stroke-dasharray="6 6"/><circle cx="30" cy="150" r="7" fill="#064E4A"/><circle class="pulse" cx="150" cy="60" r="9" fill="#F4B223"/><circle cx="150" cy="60" r="6" fill="#F4B223"/></svg>
+            <div class="row"><span>Status</span><strong>On the way</strong></div>
+            <div class="mock-btn" aria-hidden="true">Share GPS with customer</div>
+          </div>
+        </div></div>
+        <div class="ftext"><h3>GPS tracking (Figma prototype)</h3>
+          <p>Designed in our Figma prototype: customers are designed to follow their worker's route on a prototype map, and workers can navigate directly to the job location in our prototype specification.</p>
+          <p>Location sharing is planned with explicit customer permission, with manual address entry always supported.</p></div>
+      </div>
+
+      <div class="feature reveal">
+        <div class="fstage"><div class="phone" role="region" aria-label="Interactive Oddify job marketplace preview">
+          <div class="screen market-screen">
+            <!-- Header bar with Title & Location Filter -->
+            <div class="market-header">
+              <div class="market-title-row">
+                <h3>Find jobs that fit</h3>
+                <span class="demo-chip">Demo</span>
+              </div>
+              <div class="market-loc-wrapper">
+                <svg class="loc-pin" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <select id="market-loc-filter" class="market-loc-select" aria-label="Filter jobs by location">
+                  <option value="all">All Locations (Sri Lanka)</option>
+                  <option value="Colombo">Colombo</option>
+                  <option value="Nugegoda">Nugegoda</option>
+                  <option value="Dehiwala">Dehiwala</option>
+                  <option value="Gampaha">Gampaha</option>
+                  <option value="Negombo">Negombo</option>
+                </select>
+              </div>
+              <!-- Category Filter Chips -->
+              <div class="market-cats-bar" role="tablist" aria-label="Filter by category">
+                <button type="button" class="cat-pill active" data-cat="all" role="tab" aria-selected="true">All</button>
+                <button type="button" class="cat-pill" data-cat="Plumbing" role="tab" aria-selected="false">Plumbing</button>
+                <button type="button" class="cat-pill" data-cat="Electrical" role="tab" aria-selected="false">Electrical</button>
+                <button type="button" class="cat-pill" data-cat="Cleaning" role="tab" aria-selected="false">Cleaning</button>
+                <button type="button" class="cat-pill" data-cat="Moving" role="tab" aria-selected="false">Moving</button>
+                <button type="button" class="cat-pill" data-cat="Gardening" role="tab" aria-selected="false">Gardening</button>
+                <button type="button" class="cat-pill" data-cat="Delivery" role="tab" aria-selected="false">Delivery</button>
+              </div>
+            </div>
+
+            <!-- Main Content Container with 3 Views -->
+            <div class="market-views" id="market-views">
+              <!-- View 1: Job Listings List -->
+              <div class="market-view active" id="market-list-view">
+                <div class="market-job-list" id="market-job-list" aria-live="polite">
+                  <!-- Generated dynamically via JS -->
+                </div>
+              </div>
+
+              <!-- View 2: Job Details View -->
+              <div class="market-view" id="market-detail-view" style="display: none;">
+                <button type="button" class="market-back-btn" id="market-detail-back" aria-label="Back to listings">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                  <span>Back to listings</span>
+                </button>
+                <div class="job-detail-content" id="job-detail-content">
+                  <!-- Populated by JS -->
+                </div>
+                <button type="button" class="market-action-btn" id="btn-open-quote">Send a Quote</button>
+              </div>
+
+              <!-- View 3: Quotation Submission View -->
+              <div class="market-view" id="market-quote-view" style="display: none;">
+                <button type="button" class="market-back-btn" id="market-quote-back" aria-label="Cancel quote">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                  <span>Cancel</span>
+                </button>
+                <div class="quote-header">
+                  <h4 id="quote-job-title">Send Quote</h4>
+                  <p class="quote-est" id="quote-job-budget">Estimated budget: LKR 3,500</p>
+                </div>
+                <form id="market-quote-form" class="market-quote-form" novalidate>
+                  <label for="quote-price">Your Price (LKR) *</label>
+                  <input type="number" id="quote-price" name="price" placeholder="e.g. 3500" min="500" required>
+                  <label for="quote-note">Message (Optional)</label>
+                  <input type="text" id="quote-note" name="note" placeholder="Available today, own tools...">
+                  <p id="quote-error" class="quote-error" role="alert" style="display: none;"></p>
+                  <button type="submit" class="market-action-btn">Submit Quote</button>
+                  <p class="quote-disclaimer">Frontend demonstration only. Not sent to real customers.</p>
+                </form>
+                <!-- Quote Success Notification -->
+                <div id="quote-success" class="quote-success" style="display: none;">
+                  <div class="quote-check">&#10003;</div>
+                  <h4>Quote Submitted!</h4>
+                  <p id="quote-success-msg">Your proposal has been simulated.</p>
+                  <p class="quote-disclaimer">This is a student project demonstration.</p>
+                  <button type="button" class="market-back-home-btn" id="quote-done-btn">Back to Listings</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <div class="ftext"><h3>Location-based jobs</h3>
+          <p>Find opportunities close to you. Oddify shows jobs near your area that match your skills and your available hours, so you spend less time travelling and more time earning.</p>
+          <p>Try the interactive demo on the left to filter sample Sri Lankan jobs by category and location, view job details, and simulate sending a quotation.</p></div>
+      </div>
+
+      <div class="feature rev reveal">
+        <div class="fstage"><div class="phone" role="img" aria-label="Oddify profile showing identity reviewed badge and arrival confirmation">
+          <div class="screen"><h3>Verified profile</h3>
+            <div class="row"><strong>Nimal Perera</strong><span class="chip">&#10003; Identity reviewed</span></div>
+            <div class="row"><span>Rating</span><strong>4.9 &#9733;</strong></div>
+            <div class="row"><span>Arrival confirmation</span><strong>Code check</strong></div>
+            <div class="mock-btn" aria-hidden="true">Accept offer &amp; book</div>
+          </div>
+        </div></div>
+        <div class="ftext"><h3>Verified profiles &amp; safety (Proposed design)</h3>
+          <p>Know who you are working for. In our proposed system architecture and Figma prototype, accounts undergo proposed administrative identity review before posting or accepting jobs, backed by planned arrival-code confirmation.</p>
+          <p>Disputes and safety concerns are designed to route to a human reviewer through the in-app safety centre.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT CAPABILITIES & SCOPE (Genuine Non-fabricated Statistics) -->
+  <section class="wrap reveal" id="stats">
+    <div class="stats-banner">
+      <div class="stat-card">
+        <div class="stat-num-wrapper">
+          <span class="stat-number" data-target="3">0</span>
+        </div>
+        <strong class="stat-label">National Languages</strong>
+        <p class="stat-desc">Sinhala, Tamil &amp; English supported natively across all app interfaces</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-num-wrapper">
+          <span class="stat-number" data-target="4">0</span>
+        </div>
+        <strong class="stat-label">Core Prototype Modules</strong>
+        <p class="stat-desc">Multilingual AI Assistant, Live GPS, Job Marketplace &amp; Verified Safety</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-num-wrapper">
+          <span class="stat-number" data-target="6">0</span>
+        </div>
+        <strong class="stat-label">Service Categories</strong>
+        <p class="stat-desc">Plumbing, Electrical, Cleaning, Moving, Gardening &amp; Express Delivery</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-num-wrapper">
+          <span class="stat-number" data-target="5">0</span>
+        </div>
+        <strong class="stat-label">IIT Student Specialists</strong>
+        <p class="stat-desc">Collaborating on requirements, UI/UX, architecture and documentation</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="wrap reveal" id="team">
+    <h2>Meet the Team Behind Oddify</h2>
+    <p class="sub team-intro">We are a team of five Computer Science students from Informatics Institute of Technology (IIT), working together to develop Oddify. Combining our skills in requirements analysis, UI/UX design, system development and project management, we aim to create a smarter way to connect people with reliable service workers across Sri Lanka.</p>
+    <ul class="team">
+      <li>
+        <img class="team-img" src="images/nethmi.jpg" alt="Nethmi - Project Coordinator &amp; Documentation Lead" width="72" height="72" loading="lazy" decoding="async">
+        <h3>Nethmi</h3>
+        <span class="team-role">Project Coordinator &amp; Documentation Lead</span>
+        <p class="team-desc">Responsible for project coordination, sprint planning, task management, meeting records and project documentation.</p>
+      </li>
+      <li>
+        <span class="av" aria-hidden="true">Aa</span>
+        <h3>Aakif</h3>
+        <span class="team-role">UI/UX Designer</span>
+        <p class="team-desc">Responsible for designing the user interface, creating the Figma prototype and documenting the UI/UX design.</p>
+      </li>
+      <li>
+        <img class="team-img" src="images/shimsy.png" alt="Shimsy Ahamed - Requirements Analyst" width="72" height="72" loading="lazy" decoding="async">
+        <h3>Shimsy Ahamed</h3>
+        <span class="team-role">Requirements Analyst</span>
+        <p class="team-desc">Responsible for stakeholder analysis, user personas, user stories, requirements elicitation and system requirements documentation.</p>
+      </li>
+      <li>
+        <img class="team-img" src="images/senura.jpg" alt="Senura - System Analyst &amp; Technical Designer" width="72" height="72" loading="lazy" decoding="async">
+        <h3>Senura</h3>
+        <span class="team-role">System Analyst &amp; Technical Designer</span>
+        <p class="team-desc">Responsible for researching existing systems, system architecture, UML diagrams, testing documentation and technical presentation.</p>
+      </li>
+      <li>
+        <img class="team-img" src="images/sulaiman.jpg" alt="Sulaiman - Project Research &amp; Documentation" width="72" height="72" loading="lazy" decoding="async">
+        <h3>Sulaiman</h3>
+        <span class="team-role">Project Research &amp; Documentation</span>
+        <p class="team-desc">Responsible for project introduction, project planning, ethical considerations and client communication records.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <section class="band reveal" id="join">
+    <div class="wrap narrow">
+      <h2 >Be first to try Oddify</h2>
+      <p class="sub">Join the waitlist and we will email you when we launch in Sri Lanka.</p>
+      <!-- REPLACE YOUR_FORM_ID with your Formspree form ID -->
+      <form id="waitlist" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required>
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+        <label for="role">I want to</label>
+        <select id="role" name="role"><option>Get tasks done</option><option>Earn with my skills</option></select>
+        <label class="check"><input type="checkbox" name="consent" required> I agree to be emailed about Oddify. See the <a href="#privacy">privacy notice</a>.</label>
+        <button class="btn" type="submit">Join the waitlist</button>
+        <p id="form-msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot footer-group fg-1">
+    <div><p class="logo"><img src="images/oddify-mark.png" width="40" height="40" alt="Oddify logo" loading="lazy" decoding="async"> <span>ODDIFY</span></p>
+      <p>Your skills meet opportunities.<br>Agile Team Project 2026/27, IIT.</p></div>
+    <div><h3>Contact</h3>
+      <p><a href="mailto:hello@oddify.com.lk">hello@oddify.com.lk</a></p>
+      <p><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a> &middot; <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a> &middot; <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a></p><!-- REPLACE with real pages --></div>
+  </div>
+  <div class="wrap footer-group fg-2" id="privacy">
+    <h3>Privacy notice</h3>
+    <p>We collect your name, email address and whether you want to get tasks done or earn with your skills. We use them only to tell you about Oddify's launch, as part of a university project. They are stored by our form provider and are never sold or shared. We handle personal data in line with Sri Lanka's Personal Data Protection Act No. 9 of 2022. To see or delete your data, email us at the address above.</p>
+    <p class="small">&copy; <span id="year">2026</span> Oddify. This is a student project. The app is a prototype, and the workers, prices and bookings shown are fictional examples.</p>
+  </div>
+  <a href="#top" class="back-to-top" id="back-to-top" aria-label="Back to top of page">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+  </a>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
