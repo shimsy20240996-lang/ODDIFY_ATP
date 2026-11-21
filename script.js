@@ -149,6 +149,48 @@ if (reveals.length > 0) {
   }
 }
 
+// 5b. Individual scroll detection for team profile cards
+const teamSectionEl = document.getElementById('team');
+if (teamSectionEl) {
+  const teamCards = teamSectionEl.querySelectorAll('.team li');
+  if (teamCards.length > 0) {
+    const IO = (typeof window !== 'undefined' && window.IntersectionObserver) || (typeof IntersectionObserver !== 'undefined' ? IntersectionObserver : null);
+    if (!matchMedia('(prefers-reduced-motion:reduce)').matches && IO) {
+      const teamCardObserver = new IO((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('team-card-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+      teamCards.forEach(card => teamCardObserver.observe(card));
+    } else {
+      teamCards.forEach(card => card.classList.add('team-card-visible'));
+    }
+  }
+}
+
+// 5c. Scroll detection for CTA / Waitlist section
+const ctaSection = document.getElementById('join');
+if (ctaSection) {
+  const IO = (typeof window !== 'undefined' && window.IntersectionObserver) || (typeof IntersectionObserver !== 'undefined' ? IntersectionObserver : null);
+  if (!matchMedia('(prefers-reduced-motion:reduce)').matches && IO) {
+    const ctaObserver = new IO((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('cta-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    ctaObserver.observe(ctaSection);
+  } else {
+    ctaSection.classList.add('cta-visible');
+  }
+}
+
 // 6. Active navigation link indicator on scroll
 const trackedSections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('nav a:not(.btn)');
@@ -222,6 +264,17 @@ function updateScrollUI() {
 }
 window.addEventListener('scroll', updateScrollUI, { passive: true });
 updateScrollUI();
+
+if (backToTopBtn) {
+  backToTopBtn.addEventListener('click', e => {
+    e.preventDefault();
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReduced ? 'auto' : 'smooth'
+    });
+  });
+}
 
 // 6C. Desktop subtle 3D tilt on cards (disabled on touch & reduced motion)
 const tiltCards = document.querySelectorAll('.card, .team li, .solve-list li');
@@ -319,10 +372,66 @@ if (chatBox && chatTyping && chatSuggestions && langButtons.length > 0) {
     }
   };
 
+  const thinkingLabels = {
+    en: 'Oddify AI is thinking...',
+    si: 'Oddify AI සිතමින් පවතී...',
+    ta: 'Oddify AI சிந்திக்கிறது...'
+  };
+
+  let currentChatLang = 'en';
   let typingTimeout = null;
+  let activeTypingInterval = null;
+
+  function updateThinkingLabel(langKey) {
+    const labelEl = document.getElementById('ai-typing-label');
+    if (labelEl) {
+      labelEl.textContent = thinkingLabels[langKey] || thinkingLabels.en;
+    }
+  }
+
+  function typewriteMessage(element, text, onComplete) {
+    if (activeTypingInterval) {
+      clearInterval(activeTypingInterval);
+      activeTypingInterval = null;
+    }
+
+    const prefersReduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if (prefersReduced) {
+      element.textContent = text;
+      if (typeof onComplete === 'function') onComplete();
+      return;
+    }
+
+    element.textContent = '';
+    const words = text.split(' ');
+    let wordIndex = 0;
+
+    activeTypingInterval = setInterval(() => {
+      if (wordIndex < words.length) {
+        element.textContent = words.slice(0, wordIndex + 1).join(' ');
+        wordIndex++;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      } else {
+        clearInterval(activeTypingInterval);
+        activeTypingInterval = null;
+        if (typeof onComplete === 'function') onComplete();
+      }
+    }, 40);
+
+    if (activeTypingInterval && typeof activeTypingInterval.unref === 'function') {
+      activeTypingInterval.unref();
+    }
+  }
 
   function renderConversation(langKey) {
     if (typingTimeout) clearTimeout(typingTimeout);
+    if (activeTypingInterval) {
+      clearInterval(activeTypingInterval);
+      activeTypingInterval = null;
+    }
+
+    currentChatLang = langKey;
+    updateThinkingLabel(langKey);
 
     langButtons.forEach(b => {
       const isSelected = b.dataset.lang === langKey;
@@ -353,15 +462,22 @@ if (chatBox && chatTyping && chatSuggestions && langButtons.length > 0) {
     chatTyping.style.display = 'inline-flex';
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    const delay = matchMedia('(prefers-reduced-motion:reduce)').matches ? 50 : 550;
+    const prefersReduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const delay = prefersReduced ? 50 : 650;
     typingTimeout = setTimeout(() => {
       chatTyping.style.display = 'none';
       const b3 = document.createElement('p');
       b3.className = 'bubble ai';
-      b3.textContent = finalAi.text;
       chatBox.insertBefore(b3, chatTyping);
       chatBox.scrollTop = chatBox.scrollHeight;
+
+      typewriteMessage(b3, finalAi.text, () => {
+        chatBox.scrollTop = chatBox.scrollHeight;
+      });
     }, delay);
+    if (typingTimeout && typeof typingTimeout.unref === 'function') {
+      typingTimeout.unref();
+    }
 
     renderSuggestions(langKey);
   }
@@ -383,6 +499,10 @@ if (chatBox && chatTyping && chatSuggestions && langButtons.length > 0) {
 
   function handleSuggestionClick(item) {
     if (typingTimeout) clearTimeout(typingTimeout);
+    if (activeTypingInterval) {
+      clearInterval(activeTypingInterval);
+      activeTypingInterval = null;
+    }
 
     const allSugg = chatSuggestions.querySelectorAll('.sugg-btn');
     allSugg.forEach(b => b.disabled = true);
@@ -392,19 +512,27 @@ if (chatBox && chatTyping && chatSuggestions && langButtons.length > 0) {
     uMsg.textContent = item.prompt;
     chatBox.insertBefore(uMsg, chatTyping);
 
+    updateThinkingLabel(currentChatLang);
     chatTyping.style.display = 'inline-flex';
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    const delay = matchMedia('(prefers-reduced-motion:reduce)').matches ? 50 : 650;
+    const prefersReduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const delay = prefersReduced ? 50 : 1050;
     typingTimeout = setTimeout(() => {
       chatTyping.style.display = 'none';
       const aiMsg = document.createElement('p');
       aiMsg.className = 'bubble ai';
-      aiMsg.textContent = item.reply;
       chatBox.insertBefore(aiMsg, chatTyping);
       chatBox.scrollTop = chatBox.scrollHeight;
-      allSugg.forEach(b => b.disabled = false);
+
+      typewriteMessage(aiMsg, item.reply, () => {
+        allSugg.forEach(b => b.disabled = false);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      });
     }, delay);
+    if (typingTimeout && typeof typingTimeout.unref === 'function') {
+      typingTimeout.unref();
+    }
   }
 
   langButtons.forEach(btn => {
@@ -415,6 +543,7 @@ if (chatBox && chatTyping && chatSuggestions && langButtons.length > 0) {
 
   // Initialize suggestions on page load
   renderSuggestions('en');
+  updateThinkingLabel('en');
 }
 
 // 8. Interactive Job Marketplace Preview (Demonstration)
@@ -449,7 +578,8 @@ if (marketJobList && marketLocFilter) {
       duration: '2 hours',
       description: 'Repair leaking kitchen sink pipe and replace faulty washer.',
       fullDesc: 'Kitchen sink drain pipe is leaking under the counter, damaging the cupboard. Also need to replace a faulty mixer tap washer in the pantry. Replacement parts are already on site; need an experienced plumber with tools.',
-      skills: ['Pipe Fitting', 'Leak Detection', 'Plumbing Tools']
+      skills: ['Pipe Fitting', 'Leak Detection', 'Plumbing Tools'],
+      isNew: true
     },
     {
       id: 'job-2',
@@ -527,6 +657,18 @@ if (marketJobList && marketLocFilter) {
     }
   }
 
+  function getCategoryIcon(cat) {
+    switch ((cat || '').toLowerCase()) {
+      case 'plumbing': return '&#128295;';
+      case 'electrical': return '&#9889;';
+      case 'cleaning': return '&#10024;';
+      case 'moving': return '&#128230;';
+      case 'gardening': return '&#127793;';
+      case 'delivery': return '&#128666;';
+      default: return '&#128188;';
+    }
+  }
+
   function renderJobList() {
     if (!marketJobList) return;
     marketJobList.innerHTML = '';
@@ -563,25 +705,72 @@ if (marketJobList && marketLocFilter) {
       return;
     }
 
-    filtered.forEach(job => {
+    const prefersReducedMotion = typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const canHoverTilt = typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+      !prefersReducedMotion;
+
+    filtered.forEach((job, idx) => {
       const card = document.createElement('div');
       card.className = 'market-job-card';
       card.setAttribute('role', 'button');
       card.setAttribute('tabindex', '0');
       card.setAttribute('aria-label', `${job.title} in ${job.location}, estimated LKR ${job.budget.toLocaleString()}`);
 
+      if (!prefersReducedMotion) {
+        card.style.animationDelay = `${idx * 0.05}s`;
+      }
+
+      const catLower = job.category.toLowerCase();
+      const catIcon = getCategoryIcon(job.category);
+      const newBadgeHtml = job.isNew
+        ? `<span class="job-new-badge"><span class="new-badge-dot"></span>NEW</span>`
+        : '';
+
       card.innerHTML = `
         <div class="market-card-top">
-          <strong>${job.title}</strong>
+          <div class="market-card-title-group">
+            <strong>${job.title}</strong>
+            ${newBadgeHtml}
+          </div>
           <span class="market-card-budget">LKR ${job.budget.toLocaleString()}</span>
         </div>
         <div class="market-card-meta">
-          <span class="market-badge">${job.category}</span>
+          <span class="market-badge market-badge-${catLower}"><span class="cat-badge-icon cat-badge-icon-${catLower}" aria-hidden="true">${catIcon}</span> ${job.category}</span>
           <span>&#128205; ${job.location}</span>
           <span>&#9201; ${job.duration}</span>
         </div>
         <p class="market-card-desc">${job.description}</p>
+        <div class="market-card-footer">
+          <span class="card-view-link">
+            <span>View details</span>
+            <svg class="card-arrow-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </span>
+        </div>
       `;
+
+      if (canHoverTilt) {
+        card.addEventListener('mousemove', e => {
+          if (typeof card.getBoundingClientRect !== 'function') return;
+          const rect = card.getBoundingClientRect();
+          if (!rect.width || !rect.height) return;
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const midX = rect.width / 2;
+          const midY = rect.height / 2;
+          const rotX = ((y - midY) / midY) * -2.5;
+          const rotY = ((x - midX) / midX) * 2.5;
+          card.style.transform = `perspective(500px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-3px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      }
 
       card.addEventListener('click', () => openJobDetails(job));
       card.addEventListener('keydown', e => {
@@ -599,10 +788,13 @@ if (marketJobList && marketLocFilter) {
     selectedJob = job;
     if (!jobDetailContent) return;
 
+    const catLower = job.category.toLowerCase();
+    const catIcon = getCategoryIcon(job.category);
+
     jobDetailContent.innerHTML = `
       <h4 class="detail-title">${job.title}</h4>
       <div class="detail-pills">
-        <span class="market-badge">${job.category}</span>
+        <span class="market-badge market-badge-${catLower}"><span class="cat-badge-icon" aria-hidden="true">${catIcon}</span> ${job.category}</span>
         <span class="market-badge" style="background:rgba(245,158,11,.1);color:#B45309;">&#128205; ${job.location}</span>
         <span class="market-badge" style="background:rgba(100,116,139,.1);color:#475569;">&#9201; ${job.duration}</span>
       </div>
@@ -727,6 +919,22 @@ const timelineProgress = document.getElementById('timeline-progress');
 const journeyTabs = [tabCustomer, tabWorker].filter(Boolean);
 
 if (tabCustomer && tabWorker && journeyCustomer && journeyWorker) {
+  const howItWorksSection = document.getElementById('how-it-works');
+  const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let isUserInteracting = false;
+  let userInteractionTimer = null;
+
+  function markUserInteraction() {
+    isUserInteracting = true;
+    if (userInteractionTimer) clearTimeout(userInteractionTimer);
+    userInteractionTimer = setTimeout(() => {
+      isUserInteracting = false;
+    }, 1500);
+    if (userInteractionTimer && typeof userInteractionTimer.unref === 'function') {
+      userInteractionTimer.unref();
+    }
+  }
+
   function switchJourney(selectedTab) {
     const isCustomer = selectedTab === tabCustomer;
 
@@ -756,11 +964,16 @@ if (tabCustomer && tabWorker && journeyCustomer && journeyWorker) {
 
   function setActiveTimelineStep(stepEl, panel) {
     if (!stepEl || !panel) return;
-    const steps = panel.querySelectorAll('.timeline-step');
-    const stepIndex = Array.from(steps).indexOf(stepEl);
+    const steps = Array.from(panel.querySelectorAll('.timeline-step'));
+    const stepIndex = steps.indexOf(stepEl);
+    if (stepIndex === -1) return;
 
     steps.forEach((s, idx) => {
+      const isCurrent = idx === stepIndex;
+      const isCompleted = idx < stepIndex;
       s.classList.toggle('active-step', idx <= stepIndex);
+      s.classList.toggle('step-completed', isCompleted);
+      s.setAttribute('aria-current', isCurrent ? 'step' : 'false');
     });
 
     if (timelineProgress && steps.length > 1) {
@@ -769,8 +982,78 @@ if (tabCustomer && tabWorker && journeyCustomer && journeyWorker) {
     }
   }
 
-  tabCustomer.addEventListener('click', () => switchJourney(tabCustomer));
-  tabWorker.addEventListener('click', () => switchJourney(tabWorker));
+  // Scroll-triggered progressive timeline fill and step activation
+  function handleTimelineScroll() {
+    if (isUserInteracting || prefersReduced || !howItWorksSection) return;
+    if (typeof howItWorksSection.getBoundingClientRect !== 'function') return;
+
+    const rect = howItWorksSection.getBoundingClientRect();
+    const vh = (typeof window !== 'undefined' && window.innerHeight) || (document.documentElement ? document.documentElement.clientHeight : 800);
+
+    if (rect.top <= vh * 0.8 && rect.bottom >= vh * 0.2) {
+      const totalDist = rect.height + vh * 0.4;
+      const scrolledDist = (vh * 0.8) - rect.top;
+      const progress = Math.min(1, Math.max(0, scrolledDist / totalDist));
+
+      const activePanel = journeyCustomer.classList.contains('active') ? journeyCustomer : journeyWorker;
+      const steps = Array.from(activePanel.querySelectorAll('.timeline-step'));
+      if (steps.length === 0) return;
+
+      const targetIdx = Math.min(steps.length - 1, Math.floor(progress * steps.length));
+      setActiveTimelineStep(steps[targetIdx], activePanel);
+    }
+  }
+
+  let scrollTicking = false;
+  if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        if (typeof requestAnimationFrame === 'function') {
+          requestAnimationFrame(() => {
+            handleTimelineScroll();
+            scrollTicking = false;
+          });
+        } else {
+          handleTimelineScroll();
+          scrollTicking = false;
+        }
+        scrollTicking = true;
+      }
+    }, { passive: true });
+  }
+
+  // Viewport intersection observer for step activation
+  const IOClass = (typeof IntersectionObserver !== 'undefined') ? IntersectionObserver : (typeof window !== 'undefined' && window.IntersectionObserver ? window.IntersectionObserver : null);
+  if (IOClass && howItWorksSection) {
+    const stepObserver = new IOClass((entries) => {
+      if (isUserInteracting || prefersReduced) return;
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const step = entry.target;
+          const panel = (typeof step.closest === 'function') ? step.closest('.journey-panel') : null;
+          if (panel && panel.classList.contains('active')) {
+            setActiveTimelineStep(step, panel);
+          }
+        }
+      });
+    }, { rootMargin: '0px 0px -15% 0px', threshold: [0.25, 0.5] });
+
+    [journeyCustomer, journeyWorker].forEach(panel => {
+      const steps = panel.querySelectorAll('.timeline-step');
+      steps.forEach(s => {
+        if (typeof stepObserver.observe === 'function') stepObserver.observe(s);
+      });
+    });
+  }
+
+  tabCustomer.addEventListener('click', () => {
+    markUserInteraction();
+    switchJourney(tabCustomer);
+  });
+  tabWorker.addEventListener('click', () => {
+    markUserInteraction();
+    switchJourney(tabWorker);
+  });
 
   journeyTabs.forEach((tab, index) => {
     tab.addEventListener('keydown', (e) => {
@@ -790,6 +1073,7 @@ if (tabCustomer && tabWorker && journeyCustomer && journeyWorker) {
       }
 
       if (targetTab) {
+        markUserInteraction();
         targetTab.focus();
         switchJourney(targetTab);
       }
@@ -803,11 +1087,18 @@ if (tabCustomer && tabWorker && journeyCustomer && journeyWorker) {
       step.setAttribute('role', 'article');
       step.setAttribute('aria-label', `Step ${idx + 1}: ${step.querySelector('h3')?.textContent || ''}`);
 
-      step.addEventListener('click', () => setActiveTimelineStep(step, panel));
-      step.addEventListener('mouseenter', () => setActiveTimelineStep(step, panel));
+      step.addEventListener('click', () => {
+        markUserInteraction();
+        setActiveTimelineStep(step, panel);
+      });
+      step.addEventListener('mouseenter', () => {
+        markUserInteraction();
+        setActiveTimelineStep(step, panel);
+      });
       step.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
+          markUserInteraction();
           setActiveTimelineStep(step, panel);
         }
       });
@@ -878,11 +1169,12 @@ if (statNumbers.length > 0 && statsSection) {
 // 11. Footer Staggered Reveal
 const footerGroups = document.querySelectorAll('footer .footer-group');
 if (footerGroups.length > 0) {
+  const IO = (typeof window !== 'undefined' && window.IntersectionObserver) || (typeof IntersectionObserver !== 'undefined' ? IntersectionObserver : null);
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced || !('IntersectionObserver' in window)) {
+  if (prefersReduced || !IO) {
     footerGroups.forEach(fg => fg.classList.add('visible'));
   } else {
-    const footerObserver = new IntersectionObserver((entries, obs) => {
+    const footerObserver = new IO((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
@@ -1112,3 +1404,162 @@ if (canvas && heroSec) {
     animId = requestAnimationFrame(loop);
   }
 }
+
+// 14. Animated Job Matching Demonstration (Hero Section)
+(function initJobMatchingDemo() {
+  const container = document.getElementById('hero-match-demo');
+  if (!container) return;
+
+  const statusPill = document.getElementById('match-status-pill');
+  const stepBadge = document.getElementById('match-step-badge');
+  const searchSection = document.getElementById('match-searching');
+  const worker1 = document.getElementById('match-worker-1');
+  const worker2 = document.getElementById('match-worker-2');
+  const worker3 = document.getElementById('match-worker-3');
+  const winnerTag = document.getElementById('match-winner-tag');
+  const matchToast = document.getElementById('match-toast');
+
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReduced) {
+    // Show static completed job-matching state
+    container.classList.add('stage-4', 'static-completed');
+    if (statusPill) {
+      statusPill.textContent = 'Worker Matched!';
+      statusPill.classList.add('matched');
+    }
+    if (stepBadge) stepBadge.textContent = 'Matched';
+    if (searchSection) searchSection.style.display = 'none';
+    [worker1, worker2, worker3].forEach(w => {
+      if (w) w.classList.add('revealed');
+    });
+    if (worker1) {
+      worker1.classList.add('matched-winner');
+    }
+    if (winnerTag) winnerTag.style.display = 'flex';
+    if (matchToast) matchToast.style.display = 'flex';
+    return;
+  }
+
+  let timeouts = [];
+  let isRunning = false;
+
+  function clearAllTimers() {
+    timeouts.forEach(t => clearTimeout(t));
+    timeouts = [];
+  }
+
+  function queue(fn, delay) {
+    const id = setTimeout(fn, delay);
+    if (id && typeof id.unref === 'function') {
+      id.unref();
+    }
+    timeouts.push(id);
+    return id;
+  }
+
+  function resetState() {
+    clearAllTimers();
+    container.classList.remove('stage-1', 'stage-2', 'stage-3', 'stage-4', 'stage-5');
+    if (statusPill) {
+      statusPill.textContent = 'Finding workers...';
+      statusPill.classList.remove('matched');
+    }
+    if (stepBadge) stepBadge.textContent = 'Stage 1: Request';
+    if (searchSection) searchSection.style.display = '';
+    [worker1, worker2, worker3].forEach(w => {
+      if (w) w.classList.remove('revealed', 'dimmed', 'matched-winner');
+    });
+  }
+
+  function runCycle() {
+    resetState();
+    isRunning = true;
+
+    // Stage 1: Customer Request Card
+    container.classList.add('stage-1');
+    if (stepBadge) stepBadge.textContent = 'Stage 1: Request';
+
+    // Stage 2: Searching Animation (after 1.2s, runs for 2s)
+    queue(() => {
+      container.classList.remove('stage-1');
+      container.classList.add('stage-2');
+      if (stepBadge) stepBadge.textContent = 'Stage 2: Searching';
+    }, 1200);
+
+    // Stage 3: Worker Discovery (begins at 3.2s, sequential reveals)
+    queue(() => {
+      container.classList.remove('stage-2');
+      container.classList.add('stage-3');
+      if (stepBadge) stepBadge.textContent = 'Stage 3: Discovery';
+
+      // Worker 1 appears
+      if (worker1) worker1.classList.add('revealed');
+
+      // Worker 2 appears (+0.5s)
+      queue(() => {
+        if (worker2) worker2.classList.add('revealed');
+      }, 500);
+
+      // Worker 3 appears (+1.0s)
+      queue(() => {
+        if (worker3) worker3.classList.add('revealed');
+      }, 1000);
+    }, 3200);
+
+    // Stage 4: Successful Match on Kasun Fernando (at 5.4s)
+    queue(() => {
+      container.classList.remove('stage-3');
+      container.classList.add('stage-4');
+      if (stepBadge) stepBadge.textContent = 'Stage 4: Matched!';
+
+      if (worker1) worker1.classList.add('matched-winner');
+      if (worker2) worker2.classList.add('dimmed');
+      if (worker3) worker3.classList.add('dimmed');
+
+      if (statusPill) {
+        statusPill.textContent = 'Worker Matched!';
+        statusPill.classList.add('matched');
+      }
+    }, 5400);
+
+    // Stage 5: Hold Completed State & Seamless Loop (holds until 9.4s, then resets and repeats)
+    queue(() => {
+      container.classList.add('stage-5');
+      // Subtle cross-fade reset
+      container.style.opacity = '0.75';
+      queue(() => {
+        container.style.opacity = '';
+        runCycle();
+      }, 400);
+    }, 9400);
+  }
+
+  // IntersectionObserver to pause animation when off-screen and save CPU
+  if (typeof IntersectionObserver !== 'undefined') {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (!isRunning) runCycle();
+        } else {
+          clearAllTimers();
+          isRunning = false;
+        }
+      });
+    }, { threshold: 0.08 });
+
+    observer.observe(container);
+  } else {
+    runCycle();
+  }
+
+  // Pause when tab is hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearAllTimers();
+      isRunning = false;
+    } else {
+      if (!isRunning) runCycle();
+    }
+  });
+})();

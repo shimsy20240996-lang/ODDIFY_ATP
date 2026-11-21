@@ -89,6 +89,97 @@
       </div>
       <p class="glass g1">&#10003; Proposed verification</p>
       <p class="glass g2">&#9906; GPS tracking prototype</p>
+
+      <!-- Animated Job Matching Demonstration -->
+      <div class="hero-match-demo" id="hero-match-demo" role="region" aria-label="Animated job matching demonstration">
+        <div class="match-demo-header">
+          <span class="match-demo-pill"><span class="match-pulse-dot" aria-hidden="true"></span> Live Matching Demo</span>
+          <span class="match-step-badge" id="match-step-badge" aria-live="polite">Stage 1: Request</span>
+        </div>
+
+        <!-- Stage 1: Customer Request Card -->
+        <div class="match-req-card" id="match-req-card">
+          <div class="match-req-header">
+            <span class="match-req-icon" aria-hidden="true">&#128295;</span>
+            <div class="match-req-titles">
+              <h4 class="match-req-title">Electrician Needed</h4>
+              <p class="match-req-meta">Colombo &middot; Electrical repair</p>
+            </div>
+            <span class="match-status-pill" id="match-status-pill">Finding workers...</span>
+          </div>
+        </div>
+
+        <!-- Stage 2: Searching Indicator with Radar Scan -->
+        <div class="match-searching" id="match-searching">
+          <div class="match-radar-wrap" aria-hidden="true">
+            <div class="match-radar-ring r1"></div>
+            <div class="match-radar-ring r2"></div>
+            <div class="match-radar-sweep"></div>
+            <div class="match-radar-center"></div>
+          </div>
+          <div class="match-search-text">
+            <span>Finding suitable workers</span><span class="match-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span>
+          </div>
+        </div>
+
+        <!-- Stage 3 & 4: Discovered Workers List -->
+        <div class="match-workers-wrap" id="match-workers-wrap" role="list">
+          <!-- Worker 1: Kasun Fernando -->
+          <div class="match-worker-card" id="match-worker-1" role="listitem">
+            <div class="match-w-av av-teal" aria-hidden="true">KF</div>
+            <div class="match-w-info">
+              <div class="match-w-top">
+                <strong class="match-w-name">Kasun Fernando</strong>
+                <span class="match-w-rating">&#9733; 4.9</span>
+              </div>
+              <div class="match-w-bottom">
+                <span class="match-w-prof">Electrician</span>
+                <span class="match-w-loc">Colombo</span>
+              </div>
+            </div>
+            <div class="match-winner-tag" id="match-winner-tag">
+              <span class="match-best-chip">Best Match</span>
+              <span class="match-check-badge" aria-hidden="true">&#10003;</span>
+            </div>
+          </div>
+
+          <!-- Worker 2: Nimal Perera -->
+          <div class="match-worker-card" id="match-worker-2" role="listitem">
+            <div class="match-w-av av-amber" aria-hidden="true">NP</div>
+            <div class="match-w-info">
+              <div class="match-w-top">
+                <strong class="match-w-name">Nimal Perera</strong>
+                <span class="match-w-rating">&#9733; 4.7</span>
+              </div>
+              <div class="match-w-bottom">
+                <span class="match-w-prof">Electrical Technician</span>
+                <span class="match-w-loc">Dehiwala</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Worker 3: Saman Silva -->
+          <div class="match-worker-card" id="match-worker-3" role="listitem">
+            <div class="match-w-av av-mint" aria-hidden="true">SS</div>
+            <div class="match-w-info">
+              <div class="match-w-top">
+                <strong class="match-w-name">Saman Silva</strong>
+                <span class="match-w-rating">&#9733; 4.8</span>
+              </div>
+              <div class="match-w-bottom">
+                <span class="match-w-prof">Electrician</span>
+                <span class="match-w-loc">Nugegoda</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 4: Matched Toast Banner -->
+        <div class="match-toast" id="match-toast" aria-live="polite">
+          <span class="match-toast-icon" aria-hidden="true">&#10003;</span>
+          <span class="match-toast-msg">Worker Matched!</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -141,11 +232,23 @@
           <div class="timeline-step" data-step="1">
             <div class="step-badge-wrapper">
               <span class="step-num">01</span>
+              <span class="step-completed-badge" aria-hidden="true">&#10003;</span>
               <span class="step-icon" aria-hidden="true">&#128221;</span>
             </div>
             <div class="step-body">
               <h3>Post a job</h3>
               <p>Customers describe the service they need in Sinhala, Tamil or English and provide relevant task details, location, and photos.</p>
+              <!-- Mini Preview 1: Post a Job -->
+              <div class="step-preview step-preview-1" aria-hidden="true">
+                <div class="mini-req-card">
+                  <div class="mini-req-top">
+                    <span class="mini-req-tag"><span class="pulse-dot"></span> Plumbing</span>
+                    <span class="mini-req-loc">&#128205; Nugegoda</span>
+                  </div>
+                  <div class="mini-req-desc">Pipe leak repair &bull; Photos attached</div>
+                  <div class="mini-req-status"><span class="status-indicator"></span> Finding nearby workers...</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -153,11 +256,35 @@
           <div class="timeline-step" data-step="2">
             <div class="step-badge-wrapper">
               <span class="step-num">02</span>
+              <span class="step-completed-badge" aria-hidden="true">&#10003;</span>
               <span class="step-icon" aria-hidden="true">&#128269;</span>
             </div>
             <div class="step-body">
               <h3>Discover workers</h3>
               <p>Suitable, proposed verified workers near your area discover the request and review job specifications that fit their skills and schedule.</p>
+              <!-- Mini Preview 2: Receive Quotations / Discover Workers -->
+              <div class="step-preview step-preview-2" aria-hidden="true">
+                <div class="mini-quote-header">
+                  <span class="mini-quote-badge">&#128276; 3 Quotes Incoming</span>
+                </div>
+                <div class="mini-quotes-list">
+                  <div class="mini-quote-item q-1">
+                    <span class="q-avatar">KF</span>
+                    <span class="q-name">Kasun F.</span>
+                    <span class="q-price">LKR 3,500</span>
+                  </div>
+                  <div class="mini-quote-item q-2">
+                    <span class="q-avatar">NP</span>
+                    <span class="q-name">Nimal P.</span>
+                    <span class="q-price">LKR 4,200</span>
+                  </div>
+                  <div class="mini-quote-item q-3">
+                    <span class="q-avatar">SS</span>
+                    <span class="q-name">Saman S.</span>
+                    <span class="q-price">LKR 3,800</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -165,11 +292,47 @@
           <div class="timeline-step" data-step="3">
             <div class="step-badge-wrapper">
               <span class="step-num">03</span>
+              <span class="step-completed-badge" aria-hidden="true">&#10003;</span>
               <span class="step-icon" aria-hidden="true">&#128172;</span>
             </div>
             <div class="step-body">
               <h3>Receive quotations</h3>
               <p>Customers receive transparent price proposals with estimated completion times and worker notes directly through the platform.</p>
+              <!-- Mini Preview 3: Choose a Worker / Compare Profiles -->
+              <div class="step-preview step-preview-3" aria-hidden="true">
+                <div class="mini-workers-compare">
+                  <div class="mini-worker-card is-selected">
+                    <div class="mini-w-top">
+                      <div class="mini-w-info">
+                        <span class="mini-w-avatar w-kasun">KF</span>
+                        <div>
+                          <div class="mini-w-name">Kasun F. <span class="mini-verified-badge">&#10003;</span></div>
+                          <div class="mini-w-meta">&#9733; 4.9 &bull; 48 jobs</div>
+                        </div>
+                      </div>
+                      <div class="mini-w-badge">
+                        <span class="w-check-icon">&#10003;</span> Selected
+                      </div>
+                    </div>
+                    <div class="mini-w-quote-row">
+                      <span>Quote: <strong>LKR 3,500</strong></span>
+                      <span class="mini-code-tag">Arrival protection</span>
+                    </div>
+                  </div>
+                  <div class="mini-worker-card is-secondary">
+                    <div class="mini-w-top">
+                      <div class="mini-w-info">
+                        <span class="mini-w-avatar">NP</span>
+                        <div>
+                          <div class="mini-w-name">Nimal P.</div>
+                          <div class="mini-w-meta">&#9733; 4.8 &bull; 32 jobs</div>
+                        </div>
+                      </div>
+                      <span class="mini-sec-price">LKR 4,200</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -177,11 +340,33 @@
           <div class="timeline-step" data-step="4">
             <div class="step-badge-wrapper">
               <span class="step-num">04</span>
+              <span class="step-completed-badge" aria-hidden="true">&#10003;</span>
               <span class="step-icon" aria-hidden="true">&#9989;</span>
             </div>
             <div class="step-body">
               <h3>Choose a worker</h3>
               <p>Compare ratings, price quotes, and proposed background verification before confirming your booking with planned arrival-code protection.</p>
+              <!-- Mini Preview 4: Complete the Job -->
+              <div class="step-preview step-preview-4" aria-hidden="true">
+                <div class="mini-complete-card">
+                  <div class="mini-complete-celebration">
+                    <span class="confetti-dot cd-1">&#10024;</span>
+                    <span class="confetti-dot cd-2">&#11088;</span>
+                    <span class="confetti-dot cd-3">&#10024;</span>
+                  </div>
+                  <div class="mini-complete-badge">
+                    <span class="complete-check-circle">&#10003;</span>
+                    <div class="complete-text-group">
+                      <span class="complete-main-title">Job Confirmed &amp; Done</span>
+                      <span class="complete-sub-title">Arrival code verified &bull; Payment protected</span>
+                    </div>
+                  </div>
+                  <div class="mini-complete-footer">
+                    <span class="complete-stars">&#9733;&#9733;&#9733;&#9733;&#9733; 5.0</span>
+                    <span class="complete-security">&#128274; Rated &amp; Released</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -194,11 +379,21 @@
           <div class="timeline-step" data-step="1">
             <div class="step-badge-wrapper">
               <span class="step-num">01</span>
+              <span class="step-completed-badge" aria-hidden="true">&#10003;</span>
               <span class="step-icon" aria-hidden="true">&#129505;</span>
             </div>
             <div class="step-body">
               <h3>Create a profile</h3>
               <p>Build a trusted profile showcasing your trade skills, service categories, working locations, and proposed verified identity.</p>
+              <div class="step-preview step-preview-w1" aria-hidden="true">
+                <div class="w-profile-chip">
+                  <span class="w-trade-icon">&#128295;</span>
+                  <div class="w-trade-text">
+                    <strong>Plumbing &amp; Piping</strong>
+                    <span>Colombo &bull; ID Verified</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -206,11 +401,21 @@
           <div class="timeline-step" data-step="2">
             <div class="step-badge-wrapper">
               <span class="step-num">02</span>
+              <span class="step-completed-badge" aria-hidden="true">&#10003;</span>
               <span class="step-icon" aria-hidden="true">&#128205;</span>
             </div>
             <div class="step-body">
               <h3>Discover opportunities</h3>
               <p>Browse nearby task listings across Colombo, Nugegoda, Gampaha and other cities filtered to your skills and available hours.</p>
+              <div class="step-preview step-preview-w2" aria-hidden="true">
+                <div class="w-opp-chip">
+                  <span class="pulse-dot"></span>
+                  <div class="w-opp-text">
+                    <strong>Task Alert: Nugegoda</strong>
+                    <span>Pipe leak &bull; Urgent today</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -218,11 +423,18 @@
           <div class="timeline-step" data-step="3">
             <div class="step-badge-wrapper">
               <span class="step-num">03</span>
+              <span class="step-completed-badge" aria-hidden="true">&#10003;</span>
               <span class="step-icon" aria-hidden="true">&#128176;</span>
             </div>
             <div class="step-body">
               <h3>Submit quotations</h3>
               <p>Propose competitive, transparent price estimates in LKR with custom availability notes tailored to the customer's request.</p>
+              <div class="step-preview step-preview-w3" aria-hidden="true">
+                <div class="w-quote-chip">
+                  <div class="w-quote-val">Proposal: <strong>LKR 3,500</strong></div>
+                  <div class="w-quote-sub">&ldquo;Ready in 45 mins with tools&rdquo;</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -230,11 +442,21 @@
           <div class="timeline-step" data-step="4">
             <div class="step-badge-wrapper">
               <span class="step-num">04</span>
+              <span class="step-completed-badge" aria-hidden="true">&#10003;</span>
               <span class="step-icon" aria-hidden="true">&#128640;</span>
             </div>
             <div class="step-body">
               <h3>Manage accepted jobs</h3>
               <p>Coordinate arrival with planned arrival-code verification, complete the task safely, and build your platform reputation and earnings.</p>
+              <div class="step-preview step-preview-w4" aria-hidden="true">
+                <div class="w-complete-chip">
+                  <span class="w-check">&#10003;</span>
+                  <div class="w-complete-text">
+                    <strong>Arrival Code: #OD-8924</strong>
+                    <span>Job Complete &bull; Payout Released</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -251,7 +473,14 @@
 
       <div class="feature reveal">
         <div class="fstage"><div class="phone" role="region" aria-label="Oddify AI assistant chat demo with English, Sinhala and Tamil language options">
-          <div class="screen"><h3>AI Job Assistant</h3>
+          <div class="screen">
+            <div class="ai-header-row">
+              <h3>AI Job Assistant</h3>
+              <span class="ai-status-indicator" title="Demonstration of prototype AI assistant">
+                <span class="ai-status-dot"></span>
+                <span class="ai-status-text">AI Demo</span>
+              </span>
+            </div>
             <div class="langs" role="tablist" aria-label="Select chat language">
               <button type="button" class="lang-btn active" data-lang="en" role="tab" aria-selected="true">English</button>
               <button type="button" class="lang-btn" data-lang="si" role="tab" aria-selected="false">සිංහල</button>
@@ -261,7 +490,11 @@
               <p class="bubble ai">Tell me what you need help with.</p>
               <p class="bubble">My kitchen tap keeps leaking.</p>
               <p class="bubble ai">I can help you find a plumber near your location.</p>
-              <div class="bubble ai typing" id="ai-chat-typing" style="display: none;" aria-label="Assistant is typing"><i></i><i></i><i></i></div>
+              <div class="bubble ai typing" id="ai-chat-typing" style="display: none;" aria-label="Assistant is typing">
+                <span class="ai-typing-icon" aria-hidden="true">&#10024;</span>
+                <span class="ai-typing-dots"><i></i><i></i><i></i></span>
+                <span class="ai-typing-label" id="ai-typing-label">Oddify AI is thinking...</span>
+              </div>
             </div>
             <div class="chat-suggestions" id="ai-chat-suggestions" aria-label="Suggested questions">
               <button type="button" class="sugg-btn">Find a plumber</button>
@@ -310,13 +543,13 @@
               </div>
               <!-- Category Filter Chips -->
               <div class="market-cats-bar" role="tablist" aria-label="Filter by category">
-                <button type="button" class="cat-pill active" data-cat="all" role="tab" aria-selected="true">All</button>
-                <button type="button" class="cat-pill" data-cat="Plumbing" role="tab" aria-selected="false">Plumbing</button>
-                <button type="button" class="cat-pill" data-cat="Electrical" role="tab" aria-selected="false">Electrical</button>
-                <button type="button" class="cat-pill" data-cat="Cleaning" role="tab" aria-selected="false">Cleaning</button>
-                <button type="button" class="cat-pill" data-cat="Moving" role="tab" aria-selected="false">Moving</button>
-                <button type="button" class="cat-pill" data-cat="Gardening" role="tab" aria-selected="false">Gardening</button>
-                <button type="button" class="cat-pill" data-cat="Delivery" role="tab" aria-selected="false">Delivery</button>
+                <button type="button" class="cat-pill active" data-cat="all" role="tab" aria-selected="true"><span class="cat-icon cat-icon-all" aria-hidden="true">&#9776;</span> All</button>
+                <button type="button" class="cat-pill" data-cat="Plumbing" role="tab" aria-selected="false"><span class="cat-icon cat-icon-plumbing" aria-hidden="true">&#128295;</span> Plumbing</button>
+                <button type="button" class="cat-pill" data-cat="Electrical" role="tab" aria-selected="false"><span class="cat-icon cat-icon-electrical" aria-hidden="true">&#9889;</span> Electrical</button>
+                <button type="button" class="cat-pill" data-cat="Cleaning" role="tab" aria-selected="false"><span class="cat-icon cat-icon-cleaning" aria-hidden="true">&#10024;</span> Cleaning</button>
+                <button type="button" class="cat-pill" data-cat="Moving" role="tab" aria-selected="false"><span class="cat-icon cat-icon-moving" aria-hidden="true">&#128230;</span> Moving</button>
+                <button type="button" class="cat-pill" data-cat="Gardening" role="tab" aria-selected="false"><span class="cat-icon cat-icon-gardening" aria-hidden="true">&#127793;</span> Gardening</button>
+                <button type="button" class="cat-pill" data-cat="Delivery" role="tab" aria-selected="false"><span class="cat-icon cat-icon-delivery" aria-hidden="true">&#128666;</span> Delivery</button>
               </div>
             </div>
 
@@ -470,6 +703,11 @@
 
   <!-- CALL TO ACTION -->
   <section class="band reveal" id="join">
+    <div class="cta-ambient" aria-hidden="true">
+      <div class="cta-blob cta-blob-1"></div>
+      <div class="cta-blob cta-blob-2"></div>
+      <div class="cta-ring cta-ring-1"></div>
+    </div>
     <div class="wrap narrow">
       <h2 >Be first to try Oddify</h2>
       <p class="sub">Join the waitlist and we will email you when we launch in Sri Lanka.</p>
@@ -491,11 +729,11 @@
 
 <footer>
   <div class="wrap foot footer-group fg-1">
-    <div><p class="logo"><img src="images/oddify-mark.png" width="40" height="40" alt="Oddify logo" loading="lazy" decoding="async"> <span>ODDIFY</span></p>
+    <div class="footer-brand"><p class="logo"><img src="images/oddify-mark.png" width="40" height="40" alt="Oddify logo" loading="lazy" decoding="async"> <span>ODDIFY</span></p>
       <p>Your skills meet opportunities.<br>Agile Team Project 2026/27, IIT.</p></div>
-    <div><h3>Contact</h3>
-      <p><a href="mailto:hello@oddify.com.lk">hello@oddify.com.lk</a></p>
-      <p><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a> &middot; <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a> &middot; <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a></p><!-- REPLACE with real pages --></div>
+    <div class="footer-contact"><h3>Contact</h3>
+      <p><a href="mailto:oddify.2026@gmail.com" class="footer-link">oddify.2026@gmail.com</a></p>
+      <p class="footer-social"><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><svg class="social-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> Instagram</a> <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><svg class="social-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg> LinkedIn</a> <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><svg class="social-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg> Facebook</a></p><!-- REPLACE with real pages --></div>
   </div>
   <div class="wrap footer-group fg-2" id="privacy">
     <h3>Privacy notice</h3>

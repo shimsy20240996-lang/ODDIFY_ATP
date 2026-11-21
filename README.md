@@ -93,10 +93,12 @@ The landing page incorporates interactive demonstration modules illustrating the
 
 ### A. Multilingual AI Assistant Preview
 Located in the **Key Features** section, this phone mockup showcases how customer task intake works:
-- **Trilingual Switching**: Dedicated tabs for **English**, **Sinhala (සිංහල)**, and **Tamil (தமிழ்)**.
-- **Interactive Conversation Flow**: Switching languages dynamically renders localized problem statements, customer queries, and assistant recommendations.
-- **Quick Suggestion Chips**: Clickable prompts (*"Find a plumber"*, *"I need an electrician"*, *"Find nearby jobs"* / *"ජලනල කාර්මිකයෙකු සොයන්න"*) that automatically generate assistant responses.
-- **Typing Indicator**: An animated three-dot indicator simulating natural processing latency.
+- **AI Status Indicator**: Live demo badge with pulsing emerald indicator dot (`🟢 AI Demo`) clearly communicating prototype status.
+- **Trilingual Switching**: Dedicated tabs for **English**, **Sinhala (සිංහල)**, and **Tamil (தமிழ்)** with animated amber active-tab indicator underlines.
+- **Interactive Conversation Flow**: Switching languages dynamically renders localized problem statements, customer queries, and assistant recommendations with full Unicode character fidelity.
+- **Animated Thinking Indicator**: Multilingual status label (*"Oddify AI is thinking..."* / *"Oddify AI සිතමින් පවතී..."* / *"Oddify AI சிந்திக்கிறது..."*) with a pulsing AI icon (`✨`) and 3 bouncing dots.
+- **Progressive Message Typing Reveal**: Assistant responses stream progressively word-by-word with auto-scrolling to the latest message.
+- **Quick Suggestion Chips**: Interactive prompts with directional hover chevrons that lock during AI processing to prevent duplicate submissions.
 - *Implementation Note*: This is a **frontend demonstration** using client-side vanilla JavaScript and pre-structured language vectors; it is not connected to a live production LLM backend.
 
 ### B. Interactive Job Marketplace
@@ -107,12 +109,17 @@ Demonstrates the worker-facing job feed inside an interactive smartphone mockup:
   3. *House cleaning* – Dehiwala – LKR 2,500 (4 hrs)
   4. *Furniture moving* – Gampaha – LKR 4,000 (3 hrs)
   5. *Garden maintenance* – Negombo – LKR 3,000 (2 hrs)
-- **Category Filter Chips**: Filter by *All*, *Plumbing*, *Electrical*, *Cleaning*, *Moving*, *Gardening*, and *Delivery*.
+- **Category Filter Chips**: Filter by *All*, *Plumbing*, *Electrical*, *Cleaning*, *Moving*, *Gardening*, and *Delivery* with animated category micro-interactions (Plumbing tool rotation, Electrical lightning pulse, Cleaning sparkle spin, Gardening leaf sway, Moving box hop, and Delivery truck drive).
 - **Location Dropdown Filter**: Filter by Sri Lankan cities (*Colombo*, *Nugegoda*, *Dehiwala*, *Gampaha*, *Negombo*).
-- **Combined Filtering**: Simultaneous category and location filtering with dynamic counter indicators and empty-state messaging.
+- **Combined Filtering & Smooth Transitions**: Simultaneous category and location filtering with staggered card entrance animations, dynamic counter indicators, and accessible empty-state messaging.
+- **Job Card Micro-Interactions**:
+  - *Entrance Animations*: Scroll-triggered staggered fade and upward entrance.
+  - *Premium Hover & 3D Tilt*: Subtle elevation, teal border transition, and mouse-tracked 3D tilt on desktop (disabled on touch devices).
+  - *Animated NEW Badge*: Glowing amber badge with shimmering overlay and pulsing dot on featured sample job.
+  - *View Details Affordance*: Interactive view link with translating arrow icon and clear keyboard focus states.
 - **Three-Tier View Transition**:
   - *View 1: Feed View* — Browse filtered task cards.
-  - *View 2: Details View* — Inspect task background, customer notes, and required skill tags.
+  - *View 2: Details View* — Inspect task background, customer notes, and required skill tags with smooth opening and closing transitions.
   - *View 3: Quotation View* — Input a custom price in LKR, add worker availability notes, and simulate proposal submission with validation and confirmation.
 - *Implementation Note*: All listings, detail views, and bids are client-side demonstrations; no live financial or transactional data is processed.
 
@@ -130,13 +137,20 @@ Outlines the 4-step service provider experience:
 3. **03 · Submit Quotations**: Propose competitive price estimates in LKR with availability notes.
 4. **04 · Manage Accepted Jobs**: Coordinate arrival with planned arrival-code checks, complete tasks safely, and build reputation.
 
-### E. Interactive Process Timeline
+### E. Interactive Process Timeline & Scroll-Triggered Journey
 - **Journey Switcher**: ARIA-accessible tablist toggling between *Customer Journey* and *Worker Journey*.
-- **Connecting Progress Bar**: An animated line that dynamically tracks and fills as steps are activated.
-- **Active Step Highlights**: Subtle teal and amber glow indicators emphasizing the current step in the workflow.
-- **Keyboard Navigation**: Fully operable using `ArrowLeft`, `ArrowRight`, `Home`, and `End` keys.
+- **Scroll-Triggered Progress Fill**: The connecting timeline line dynamically fills with Oddify teal (`#0B6E69`) as users scroll through the section, advancing step by step with smooth cubic-bezier easing.
+- **Completed Step Indicators**: Completed steps maintain a persistent teal checkmark badge (`✓`), retaining their completed status as the journey progresses.
+- **Four-Step Customer Journey Previews**:
+  - **Step 1 (Post a Job)**: Displays a task intake chip (🔧 *Plumbing repair · Nugegoda*) with a pulsing live status indicator.
+  - **Step 2 (Receive Quotations / Discover Workers)**: Features 3 quotation proposal cards sliding into place sequentially (*Kasun F. LKR 3,500*, *Nimal P. LKR 4,200*, *Saman S. LKR 3,800*) beneath an incoming quote notification badge.
+  - **Step 3 (Choose a Worker / Compare Profiles)**: Demonstrates worker profile comparison with Kasun Fernando highlighted in teal as the selected worker with arrival-code protection.
+  - **Step 4 (Complete the Job)**: Displays a celebratory completion badge (*🏆 Job Confirmed & Done*) with an animated scaling checkmark and 5.0 star rating.
+- **Responsive Timeline Architecture**: Horizontal progress bar on desktop; transforms into a vertical connecting line between stacked step cards on mobile and tablet screens.
+- **Micro-Interactions & Keyboard Navigation**: Fully operable using `ArrowLeft`, `ArrowRight`, `Home`, and `End` keys, with hover states, active glows, and instant static fallback under `prefers-reduced-motion`.
 
 ### F. Visual Polish & 3D Background Effects
+- **Animated Job Matching Demonstration**: 5-stage interactive sequence in the hero stage demonstrating customer task intake (🔧 *Electrician Needed* in Colombo), radar-scanning worker search, sequential discovery of 3 local worker profiles (Kasun Fernando, Nimal Perera, Saman Silva), and automatic best-match selection with glowing teal highlights and celebratory indicators. Pauses when off-screen and provides full static fallback for `prefers-reduced-motion`.
 - **Interactive 3D Particle Network**: Pure HTML5 Canvas background in the hero with floating teal and amber nodes, simulated depth ($z$-parallax), proximity connection lines, and cursor repulsion on desktop. Pauses automatically when scrolled out of view.
 - **Multi-Layer Aurora**: Dual animated gradient auras (`auraFloat` and `auroraWave`) providing organic, slow-moving backdrops while preserving WCAG text contrast.
 - **Floating 3D Geometric Shapes**: Translucent 3D ring (`.geo-ring-1`) and frosted prism (`.geo-poly-1`) with specular rim lighting and rotation keyframes.
@@ -146,13 +160,29 @@ Outlines the 4-step service provider experience:
 - **Scroll Progress & Back-to-Top**: Fixed gradient progress bar at the top of the viewport and a floating back-to-top button appearing after 380px of scroll.
 
 ### G. Team Section
-Features all five undergraduate contributors from Informatics Institute of Technology (IIT), complete with individual role badges and responsibility breakdowns.
+- Features all five undergraduate contributors from Informatics Institute of Technology (IIT), complete with individual role badges and responsibility breakdowns.
+- Scroll-triggered staggered profile reveals powered by an efficient `IntersectionObserver` with single-trigger guarantees (`unobserve`).
+- Profile photo micro-interactions featuring circular clipping (`72px`, `border-radius: 50%`, `object-fit: cover`) and subtle hover zoom (`scale(1.08)`).
+- Card elevation micro-interactions (`translateY(-6px)`), brand teal border transitions, and soft shadow transitions.
+- Name color transitions on hover (`var(--teal)`) and animated role badge pills with entrance transitions.
 
-### H. Waitlist Lead Capture
-- Form inputs for user name, email, and user role selection (*"Get tasks done"* vs. *"Earn with my skills"*).
-- Validation for email syntax and required consent checkbox.
-- Dynamic submission feedback with loading, success, and error states.
-- *Integration Note*: Includes a simulated handler that checks for the placeholder Formspree endpoint (`YOUR_FORM_ID`) before attempting live submission.
+### H. Waitlist Lead Capture & CTA
+- **Scroll-Triggered Entrance**: Animate the CTA container into view with 45px vertical displacement, 0.96-to-1 scale entrance, and 120–150ms sequential stagger delays across heading, description, form fields, and button.
+- **Ambient Background**: Floating gradient glow blobs and rotating decorative geometric rings (`pointer-events: none`) powered by GPU-accelerated CSS keyframes.
+- **Interactive Form Micro-Interactions**: Smooth input field focus transitions, Oddify teal border glow (`border-color: var(--teal)`, `box-shadow: 0 0 0 3px rgba(20,164,156,.35)`), and 1px elevation lift.
+- **Tactile CTA Button**: Interactive button with 3px hover lift, rich amber shadow glow, and tactile active pressed state (`translateY(1px) scale(.98)`).
+- **Form inputs**: User name, email, and user role selection (*"Get tasks done"* vs. *"Earn with my skills"*).
+- **Validation**: Strict validation for email syntax and required consent checkbox.
+- **Dynamic Feedback**: Animated feedback message with loading, success, and error states.
+- **Integration Note**: Honestly detects the placeholder Formspree endpoint (`YOUR_FORM_ID`) and informs users of pending configuration without faking or simulating false registration storage.
+
+### I. Modern Footer & Interactive Navigation
+- **Scroll-Triggered Reveal**: Two-stage animated entrance using `IntersectionObserver` with 35px vertical displacement, smooth cubic-bezier easing, and sequential ~120ms staggered child reveals (logo/brand, navigation/contact links, social badges, copyright).
+- **Logo Micro-Interactions**: Hover scale (`scale(1.04)`), mark rotation (`rotate(6deg) scale(1.08)`), and amber glow transition on the Oddify brandmark.
+- **Navigation Micro-Interactions**: Smooth teal/cyan transition (`#2dd4bf`), 3px horizontal glide (`translateX(3px)`), and animated gradient underline expander.
+- **Social Media Badges**: Tactile pill buttons featuring authentic inline brand SVG icons (Instagram, LinkedIn, Facebook) with elevation (`translateY(-2px)`), scale (`scale(1.05)`), icon micro-rotation (`rotate(4deg)`), Oddify amber accent, and soft teal glow.
+- **Back-to-Top Floating Control**: Elegant circular floating button appearing after 380px of vertical scroll with smooth programmatic scroll-to-top (`window.scrollTo({ top: 0, behavior: 'smooth' })`), hover elevation, arrow micro-lift, and full `prefers-reduced-motion` compliance.
+- **Ambient Footer Background**: Restrained dual-glow backdrop with soft teal radial gradient and subtle amber ambient accent floating on non-intrusive keyframe loops behind content (`pointer-events: none`).
 
 ---
 
@@ -166,6 +196,7 @@ To maintain academic integrity and technical accuracy, the table below clarifies
 | **Job Marketplace Feed** | 🟢 Frontend Demo | 5 realistic Sri Lankan sample jobs with category/location filtering and quotation modal | Client-side memory array; listings and bids are not saved to a database. |
 | **Customer/Worker Switcher** | 🟢 Fully Functional | WAI-ARIA tablist with keyboard navigation and animated progress tracking | Demonstrates the workflow concept designed in the team's Figma prototype. |
 | **Capability Scope Counters** | 🟢 Fully Functional | IntersectionObserver-triggered animated count-up for genuine project pillars | Represents academic project scope (3 languages, 4 modules, 6 categories, 5 developers). |
+| **Job Matching Demonstration** | 🟢 Frontend Demo | 5-stage automated sequence (request, radar scan, 3 worker reveals, best match highlight, loop) | Client-side visual demonstration in the hero stage; pauses when out of view and respects reduced-motion. |
 | **Interactive 3D Particles** | 🟢 Fully Functional | Hardware-accelerated HTML5 Canvas with proximity lines and desktop pointer repulsion | Automatically pauses when out of view; single static frame on reduced-motion. |
 | **Waitlist Validation** | 🟢 Frontend Functional | Client-side validation with sending/success/error feedback alerts | Configured with a placeholder endpoint (`YOUR_FORM_ID`); requires a live Formspree form ID for production lead capture. |
 | **Real-Time GPS Tracking** | 🟡 Figma Concept | Static vector map illustration with route path and pulsing beacon dot | Concept only. Real-time driver/worker GPS tracking requires Mapbox/Google Maps API and WebSocket backend. |
@@ -308,6 +339,7 @@ The following technical milestones represent proposed future work for extending 
 - **Institution**: Informatics Institute of Technology (IIT), Sri Lanka (in collaboration with University of Westminster, UK)
 - **Academic Year**: 2026 / 2027
 - **Official Domain**: `oddify.com.lk` *(Registered project domain; currently hosting project prototype demonstrations)*
+- **Contact Email**: [oddify.2026@gmail.com](mailto:oddify.2026@gmail.com)
 
 ---
 
