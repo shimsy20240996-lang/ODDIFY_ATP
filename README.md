@@ -202,6 +202,7 @@ The project is built entirely using standard web technologies without external r
 ```
 Oddify/
 ├── images/
+│   ├── aakif.jpeg                 # Team Member 2 photo (Aakif)
 │   ├── apple-touch-icon.png       # 180x180 iOS touch icon
 │   ├── favicon.ico                # 32x32 multi-resolution browser icon
 │   ├── favicon.png                # PNG favicon
@@ -279,7 +280,7 @@ Oddify was conceptualized and developed by a team of five Computer Science under
 | Team Member | Role | Key Project Responsibilities | Profile Avatar |
 | :--- | :--- | :--- | :---: |
 | **Nethmi** | **Project Coordinator & Documentation Lead** | Project coordination, sprint planning, task management, meeting logs, and comprehensive project documentation. | `images/nethmi.jpg` |
-| **Aakif** | **UI/UX Designer** | User interface design, interactive Figma prototype creation, design systems, and UI/UX documentation. | Initials Monogram (`Aa`) |
+| **Aakif** | **UI/UX Designer** | User interface design, interactive Figma prototype creation, design systems, and UI/UX documentation. | `images/aakif.jpeg` |
 | **Shimsy Ahamed** | **Requirements Analyst** | Stakeholder analysis, user personas, user stories, requirements elicitation, and system requirements documentation. | `images/shimsy.png` |
 | **Senura** | **System Analyst & Technical Designer** | Research on existing systems, system architecture, UML diagrams, testing documentation, and technical presentation. | `images/senura.jpg` |
 | **Sulaiman** | **Project Research & Documentation** | Project introduction, project planning, ethical considerations, and client communication records. | `images/sulaiman.jpg` |
