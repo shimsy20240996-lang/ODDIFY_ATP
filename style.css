@@ -25,7 +25,7 @@ nav a:not(.btn){text-decoration:none;color:var(--ink);font-weight:500;transition
 nav a:not(.btn):hover{color:var(--teal)}
 nav a:not(.btn).active{color:var(--teal);font-weight:600}
 nav a:not(.btn).active::after{content:"";position:absolute;bottom:-4px;left:0;right:0;height:2.5px;background:var(--teal);border-radius:2px}
-.menu-btn{display:none;align-items:center;gap:.4rem;background:transparent;border:1.5px solid var(--teal);color:var(--teal);border-radius:8px;padding:.4rem .75rem;font:inherit;font-size:.88rem;font-weight:600;cursor:pointer;line-height:1}
+.menu-btn{display:none;align-items:center;justify-content:center;min-height:44px;gap:.4rem;background:transparent;border:1.5px solid var(--teal);color:var(--teal);border-radius:8px;padding:.5rem .85rem;font:inherit;font-size:.88rem;font-weight:600;cursor:pointer;line-height:1;box-sizing:border-box}
 .menu-btn svg{display:block;flex-shrink:0}
 .menu-btn .icon-close{display:none}
 .menu-btn[aria-expanded="true"]{background:var(--mint);color:var(--dark)}
@@ -70,7 +70,7 @@ nav a:not(.btn).active::after{content:"";position:absolute;bottom:-4px;left:0;ri
 .orb{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 28%,#ffe9a8,var(--yellow) 45%,#a8730a);box-shadow:inset -8px -10px 20px rgba(0,0,0,.25),0 18px 28px rgba(0,0,0,.3);animation:float 5s ease-in-out infinite;z-index:3}
 .o1{width:70px;height:70px;top:2%;right:6%}.o2{width:34px;height:34px;bottom:8%;left:12%;animation-delay:-2s}
 .glass{position:absolute;margin:0;z-index:4;background:rgba(255,255,255,.14);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:.55rem .9rem;font-size:.82rem;font-weight:500;box-shadow:0 16px 32px rgba(0,0,0,.25);animation:float 5s ease-in-out infinite}
-.g1{left:2%;top:6%;animation-delay:-1s}.g2{right:-2%;bottom:0;animation-delay:-3s}
+.g1{left:2%;top:6%;animation-delay:-1s}.g2{right:2%;top:5%;bottom:auto;animation-delay:-3s}
 .geo-shape{position:absolute;pointer-events:none;z-index:2;transform-style:preserve-3d}
 .geo-ring-1{width:85px;height:85px;top:16%;left:4%;border-radius:50%;border:2.5px solid rgba(20,164,156,.45);box-shadow:0 0 20px rgba(20,164,156,.2),inset 0 0 15px rgba(244,178,35,.18);transform:rotateX(65deg) rotateY(25deg);animation:geoRingFloat 9s ease-in-out infinite alternate}
 .geo-poly-1{width:52px;height:52px;bottom:15%;right:10%;border-radius:14px;background:linear-gradient(135deg,rgba(244,178,35,.18),rgba(11,110,105,.25));border:1.5px solid rgba(255,255,255,.32);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 12px 24px rgba(0,0,0,.2);transform:rotate(35deg);animation:geoPolyFloat 11s ease-in-out -4s infinite alternate}
@@ -334,7 +334,7 @@ form .btn{margin-top:1rem}
 .loc-pin{position:absolute;left:.45rem;color:var(--teal);pointer-events:none}
 .market-loc-select{width:100%;padding:.25rem .4rem .25rem 1.45rem;font-size:.72rem;font-family:inherit;color:var(--dark);background:#F0FDF4;border:1px solid rgba(11,110,105,.25);border-radius:7px;outline:none;cursor:pointer;transition:border-color .15s ease}
 .market-loc-select:focus{border-color:var(--teal)}
-.market-cats-bar{display:flex;gap:.25rem;overflow-x:auto;padding-bottom:.25rem;margin:0;scrollbar-width:none;-ms-overflow-style:none}
+.market-cats-bar{display:flex;gap:.25rem;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.25rem;margin:0;scrollbar-width:none;-ms-overflow-style:none}
 .market-cats-bar::-webkit-scrollbar{display:none}
 .cat-pill{white-space:nowrap;font-size:.66rem;font-weight:600;font-family:inherit;padding:.2rem .55rem;border-radius:999px;border:1px solid rgba(11,110,105,.2);background:rgba(230,240,236,.6);color:var(--dark);cursor:pointer;transition:all .2s ease;line-height:1.25;display:inline-flex;align-items:center;gap:.3rem}
 .cat-pill:hover{background:rgba(11,110,105,.12);border-color:var(--teal);color:var(--teal);transform:translateY(-1px)}
@@ -768,7 +768,7 @@ footer .footer-social a:hover .social-icon,footer a[target="_blank"]:hover .soci
   nav a:not(.btn).active::after{display:none}
   nav .btn{text-align:center;margin-top:.4rem}
   .g1{left:2%;top:2%}
-  .g2{right:2%;bottom:2%}
+  .g2{right:2%;top:4%;bottom:auto}
   .timeline-grid{grid-template-columns:repeat(2,1fr);gap:1.25rem}
   .timeline-track{display:none}
   .stats-banner{grid-template-columns:repeat(2,1fr);gap:1.5rem 1rem;padding:2rem 1.25rem}
@@ -778,7 +778,7 @@ footer .footer-social a:hover .social-icon,footer a[target="_blank"]:hover .soci
   .team li:nth-child(5){grid-column:auto;max-width:100%}
   .team li{padding:1.5rem 1.2rem}
   .timeline-grid{grid-template-columns:1fr;gap:1rem}
-  .timeline-step:not(:last-child)::after{content:'';position:absolute;left:28px;top:100%;height:1rem;width:2px;background:rgba(6,78,74,.12);border-radius:2px;z-index:1;transition:background .35s ease}
+  .timeline-step:not(:last-child)::after{content:'';position:absolute;left:calc(1.15rem + 18px);top:100%;bottom:auto;height:1rem;width:2px;background:rgba(6,78,74,.15);border-radius:2px;z-index:1;transition:background .35s ease}
   .timeline-step.step-completed:not(:last-child)::after{background:linear-gradient(180deg,var(--teal) 0%,rgba(11,110,105,.5) 100%)}
   .journey-switch{width:100%;max-width:340px}
   .journey-tab{flex:1;padding:.6rem .8rem;font-size:.88rem;justify-content:center}
@@ -797,11 +797,13 @@ footer .footer-social a:hover .social-icon,footer a[target="_blank"]:hover .soci
   .screen{min-height:260px;padding:.85rem .75rem;font-size:.8rem}
   .market-screen{height:360px;max-height:360px;padding:.75rem .65rem}
   .g1{font-size:.75rem;padding:.4rem .7rem;left:0;top:0}
-  .g2{font-size:.75rem;padding:.4rem .7rem;right:0;bottom:0}
+  .g2{display:none}
   .fstage{padding:1rem}
   .fstage .phone,.feature.rev .fstage .phone{transform:none;width:220px;box-shadow:0 16px 32px rgba(6,78,74,.2)}
   .actions .btn{width:100%;text-align:center}
   .back-to-top{bottom:1rem;right:1rem;width:38px;height:38px}
+  #join input[type=text],#join input[type=email],#join select{font-size:16px}
+  footer .footer-social a,footer a[target="_blank"]{padding:.44rem .85rem;min-height:38px;box-sizing:border-box}
   .fc-1{top:8%;right:2%;transform:scale(.85)}
   .fc-2{bottom:6%;left:2%;transform:scale(.85)}
   .stats-banner{grid-template-columns:1fr;gap:1.5rem;padding:1.6rem 1rem}
@@ -829,6 +831,7 @@ footer .footer-social a:hover .social-icon,footer a[target="_blank"]:hover .soci
   .stat-number{font-size:2.1rem}
   .stat-desc{max-width:100%}
   .timeline-step{padding:1.2rem .95rem}
+  .timeline-step:not(:last-child)::after{left:calc(.95rem + 18px)}
 }
 @media (max-width:360px){
   .stat-number{font-size:2rem}
