@@ -747,12 +747,14 @@ footer .footer-social a:hover .social-icon,footer a[target="_blank"]:hover .soci
 }
 @media (max-width:860px){
   .hero,.two,.solve-list,.foot,.feature,.feature.rev{grid-template-columns:1fr}
-  .hero{padding-top:3.5rem;padding-bottom:3.5rem}
+  .hero{padding-top:3.5rem;padding-bottom:3.5rem;gap:2.25rem}
   .hero-text{max-width:100%}
-  .stage{height:540px;max-width:100%;margin:0 auto}
+  .stage{height:560px;max-width:100%;margin:.5rem auto 0}
   .hero-match-demo{width:295px;right:auto;left:50%;transform:translateX(-50%);bottom:10px}
-  .phone.p-front{transform:translate(-20%,-65%) rotateY(calc(-10deg + var(--ry,0deg))) rotateX(calc(4deg + var(--rx,0deg))) scale(.92)}
-  .phone.p-back{transform:translate(-82%,-56%) rotateY(calc(12deg + var(--ry,0deg))) rotateX(calc(4deg + var(--rx,0deg))) scale(.8)}
+  .glass.g1{left:50%;top:0;transform:translateX(-50%);animation:none;z-index:6}
+  .phone.p-front,.phone.p-back{top:48px;transform-origin:top center}
+  .phone.p-front{transform:translateX(-18%) rotateY(calc(-8deg + var(--ry,0deg))) rotateX(calc(3deg + var(--rx,0deg))) scale(.88)}
+  .phone.p-back{transform:translateX(-78%) rotateY(calc(10deg + var(--ry,0deg))) rotateX(calc(3deg + var(--rx,0deg))) scale(.78)}
   .feature.rev .fstage{order:0}
   .fstage{padding:1.5rem}
   .team{grid-template-columns:repeat(2,1fr);gap:1.25rem}
@@ -767,7 +769,6 @@ footer .footer-social a:hover .social-icon,footer a[target="_blank"]:hover .soci
   nav a:not(.btn).active{background:var(--mint);color:var(--dark);font-weight:600}
   nav a:not(.btn).active::after{display:none}
   nav .btn{text-align:center;margin-top:.4rem}
-  .g1{left:2%;top:2%}
   .g2{right:2%;top:4%;bottom:auto}
   .timeline-grid{grid-template-columns:repeat(2,1fr);gap:1.25rem}
   .timeline-track{display:none}
@@ -782,21 +783,26 @@ footer .footer-social a:hover .social-icon,footer a[target="_blank"]:hover .soci
   .timeline-step.step-completed:not(:last-child)::after{background:linear-gradient(180deg,var(--teal) 0%,rgba(11,110,105,.5) 100%)}
   .journey-switch{width:100%;max-width:340px}
   .journey-tab{flex:1;padding:.6rem .8rem;font-size:.88rem;justify-content:center}
-  .stage{height:560px}
+  .stage{height:570px}
+  .glass.g1{font-size:.78rem;padding:.38rem .75rem;top:0;left:50%;transform:translateX(-50%)}
   .hero-match-demo{width:calc(100% - 24px);max-width:290px;bottom:8px}
-  .phone.p-front{transform:translate(-18%,-68%) rotateY(calc(-8deg + var(--ry,0deg))) rotateX(calc(3deg + var(--rx,0deg))) scale(.86)}
-  .phone.p-back{transform:translate(-78%,-60%) rotateY(calc(10deg + var(--ry,0deg))) rotateX(calc(3deg + var(--rx,0deg))) scale(.76)}
+  .phone.p-front,.phone.p-back{top:44px}
+  .phone.p-front{transform:translateX(-18%) scale(.84)}
+  .phone.p-back{transform:translateX(-78%) scale(.74)}
 }
 @media (max-width:480px){
-  .hero{padding-top:2.5rem;padding-bottom:2.5rem}
-  .stage{height:530px}
+  .hero{padding-top:2.5rem;padding-bottom:2.5rem;gap:2rem}
+  .stage{height:560px;margin-top:.75rem}
   .hero-match-demo{width:calc(100% - 20px);max-width:280px;bottom:6px;padding:.7rem .8rem}
-  .phone.p-front{transform:translate(-16%,-72%) scale(.78)}
-  .phone.p-back{transform:translate(-75%,-64%) scale(.7)}
-  .phone.p-front,.phone.p-back{width:195px}
+  .phone.p-front,.phone.p-back{top:40px;width:195px}
+  .phone.p-front{transform:translateX(-16%) scale(.78)}
+  .phone.p-back{transform:translateX(-76%) scale(.68)}
+  .hero-float-card{display:none}
+  .geo-shape{display:none}
+  .orb.o1{width:52px;height:52px;top:16px;right:4%}
   .screen{min-height:260px;padding:.85rem .75rem;font-size:.8rem}
   .market-screen{height:360px;max-height:360px;padding:.75rem .65rem}
-  .g1{font-size:.75rem;padding:.4rem .7rem;left:0;top:0}
+  .g1{font-size:.74rem;padding:.35rem .7rem;left:50%;top:0;transform:translateX(-50%)}
   .g2{display:none}
   .fstage{padding:1rem}
   .fstage .phone,.feature.rev .fstage .phone{transform:none;width:220px;box-shadow:0 16px 32px rgba(6,78,74,.2)}
@@ -804,8 +810,6 @@ footer .footer-social a:hover .social-icon,footer a[target="_blank"]:hover .soci
   .back-to-top{bottom:1rem;right:1rem;width:38px;height:38px}
   #join input[type=text],#join input[type=email],#join select{font-size:16px}
   footer .footer-social a,footer a[target="_blank"]{padding:.44rem .85rem;min-height:38px;box-sizing:border-box}
-  .fc-1{top:8%;right:2%;transform:scale(.85)}
-  .fc-2{bottom:6%;left:2%;transform:scale(.85)}
   .stats-banner{grid-template-columns:1fr;gap:1.5rem;padding:1.6rem 1rem}
   .stat-number{font-size:2.4rem}
   .journey-switch{flex-direction:column;width:100%;max-width:280px;border-radius:18px;gap:2px}
@@ -813,21 +817,20 @@ footer .footer-social a:hover .social-icon,footer a[target="_blank"]:hover .soci
 }
 @media (max-width:380px){
   .wrap{padding:2.5rem 1rem}
-  .stage{height:490px}
+  .stage{height:530px;margin-top:.75rem}
   .hero-match-demo{width:calc(100% - 16px);max-width:265px;padding:.6rem .7rem;bottom:4px}
   .match-req-title{font-size:.72rem}
   .match-req-meta{font-size:.6rem}
   .match-w-name{font-size:.68rem}
   .match-w-rating{font-size:.62rem}
-  .phone.p-front{transform:translate(-15%,-74%) scale(.72)}
-  .phone.p-back{transform:translate(-72%,-66%) scale(.64)}
-  .phone.p-front,.phone.p-back{width:170px}
+  .phone.p-front,.phone.p-back{top:36px;width:175px}
+  .phone.p-front{transform:translateX(-15%) scale(.72)}
+  .phone.p-back{transform:translateX(-74%) scale(.64)}
+  .g1{font-size:.7rem;padding:.32rem .65rem;left:50%;top:0;transform:translateX(-50%)}
   .fstage{padding:.75rem .5rem}
   .fstage .phone,.feature.rev .fstage .phone{width:210px}
   .market-screen{height:355px;padding:.65rem .55rem}
   .market-card-top{flex-wrap:wrap}
-  .hero-float-card{display:none}
-  .geo-shape{display:none}
   .stat-number{font-size:2.1rem}
   .stat-desc{max-width:100%}
   .timeline-step{padding:1.2rem .95rem}
